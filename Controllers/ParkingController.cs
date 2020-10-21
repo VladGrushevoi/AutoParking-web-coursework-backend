@@ -32,5 +32,23 @@ namespace Controllers
         {
             return Created("Created",parkingService.CreateParkings().Result);
         }
+
+        [HttpPost]
+        public ActionResult<Parking> AddParking([FromBody] Parking p)
+        {
+            return Created("Created parking", parkingService.AddParking(p));
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<Parking> UpdateParking(int id, [FromBody] Parking p)
+        {
+            return Ok(parkingService.UpdateParking(id, p).Result);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Parking> DeleteParking(int id)
+        {
+            return Ok(parkingService.DeleteParking(id));
+        }
     }    
 }
