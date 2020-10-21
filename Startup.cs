@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Srvices;
 
 namespace AutoParking_backend
 {
@@ -28,6 +29,7 @@ namespace AutoParking_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ParkingService, ParkingService>();
             services.AddControllers();
         }
 
