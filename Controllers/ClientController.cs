@@ -40,5 +40,11 @@ namespace Controller
         {
             return Created("Created", clientService.InitClient().Result);
         }
+
+        [HttpPatch("{id}")]
+        public ActionResult<Client> EditClientInf(int id, [FromBody] Client c)
+        {
+            return Ok(clientService.EditInformation(id, c).Result);
+        }
     }
 }

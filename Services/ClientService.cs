@@ -28,6 +28,24 @@ namespace Services
 
         public Task<Client> GetClientById(int id) => Task.Run(() => _context.clients.Find(id));
 
+        public ValueTask<Client> EditInformation(int id, Client c)
+        {
+            var client = _context.clients.FindAsync(id);
+            if(client != null)
+            {
+                if(c.FirstName != null)
+                    client.Result.FirstName = c.FirstName;
+                
+                if(c.LastName != null)
+                    client.Result.LastName = c.LastName;
+
+                if(c.Phone != null)
+                    client.Result.Phone = c.Phone;
+                
+                _context.SaveChangesAsync();
+            }
+            return _context.clients.FindAsync(id);
+        }
 
         ///=========================================///
         ///         Ініціалізація інфи              ///
