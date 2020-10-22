@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Srvices;
+using Services;
 
 namespace AutoParking_backend
 {
@@ -30,9 +30,9 @@ namespace AutoParking_backend
         {
             services.AddDbContext<AppContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ParkingService, ParkingService>();
+            services.AddScoped<ClientService, ClientService>();
             services.AddControllers();
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
