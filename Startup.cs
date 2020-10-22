@@ -31,6 +31,13 @@ namespace AutoParking_backend
             services.AddDbContext<AppContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ParkingService, ParkingService>();
             services.AddScoped<ClientService, ClientService>();
+            services.AddScoped<TypePlaceService, TypePlaceService>();
+            services.AddScoped<TypeCarService, TypeCarService>();
+            services.AddScoped<PlaceService, PlaceService>();
+            services.AddControllersWithViews()
+                                    .AddNewtonsoftJson(options =>
+                                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                                    );
             services.AddControllers();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

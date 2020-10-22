@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-    public class Parking
+    public class TypePlace
     {
         [Key]
-        public int ParkingId {get; set;}
-        public string Name {get; set;}
-        public string Description{get; set;}
+        public int TypeId {get; set;}
+        public string TypeName {get; set;}
 
         public List<Place> Places {get; set;}
     }
