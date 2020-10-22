@@ -30,12 +30,12 @@ namespace Services
         {
             _context.parkings.AddAsync(p);
             _context.SaveChangesAsync();
-            return Task.Run(() => _context.parkings.OrderByDescending(p=> p.Id).FirstOrDefault());
+            return Task.Run(() => _context.parkings.OrderByDescending(p=> p.ParkingId).FirstOrDefault());
         }
 
         public Task<Parking> UpdateParking(int id,Parking p)
         {
-            var parking = _context.parkings.FirstAsync(p => p.Id == id);
+            var parking = _context.parkings.FirstAsync(p => p.ParkingId == id);
             if(parking != null)
             {
                 if(p.Name != null)
