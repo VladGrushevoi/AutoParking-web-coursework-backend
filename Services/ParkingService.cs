@@ -5,7 +5,7 @@ using AutoParking_backend;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
-namespace Srvices
+namespace Services
 {
     public class ParkingService
     {
@@ -30,7 +30,7 @@ namespace Srvices
         {
             _context.parkings.AddAsync(p);
             _context.SaveChangesAsync();
-            return Task.Run(() => _context.parkings.Last<Parking>());
+            return Task.Run(() => _context.parkings.OrderByDescending(p=> p.Id).FirstOrDefault());
         }
 
         public Task<Parking> UpdateParking(int id,Parking p)
