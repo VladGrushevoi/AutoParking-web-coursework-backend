@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Srvices;
+using Services;
 
 namespace Controllers
 {
@@ -36,7 +36,7 @@ namespace Controllers
         [HttpPost]
         public ActionResult<Parking> AddParking([FromBody] Parking p)
         {
-            return Created("Created parking", parkingService.AddParking(p));
+            return Created("Created parking", parkingService.AddParking(p).Result);
         }
 
         [HttpPatch("{id}")]
