@@ -10,6 +10,7 @@ namespace AutoParking_backend
         public DbSet<TypeCar> typeCars {get; set;}
         public DbSet<TypePlace> typePlaces {get; set;}
         public DbSet<Place> places {get; set;}
+        public DbSet<Reserv> reservations {get; set;}
         public AppContext(DbContextOptions opt) : base(opt)
         {
 
