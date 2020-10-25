@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
@@ -11,8 +12,11 @@ namespace Models
         public int ParkingId {get; set;}        
         public double Price {get; set;}
 
+        [NotMapped]
         public TypeCar TypeCar {get; set;}
+        [NotMapped]
         public TypePlace TypePlace {get; set;}
+        [NotMapped]
         public Parking Parking {get; set;}
     }
 }
