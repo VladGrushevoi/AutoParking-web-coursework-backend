@@ -3,14 +3,16 @@ using System;
 using AutoParking_backend;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoParking_backend.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20201024111305_reserv")]
+    partial class reserv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,19 +140,19 @@ namespace AutoParking_backend.Migrations
 
             modelBuilder.Entity("Models.Place", b =>
                 {
-                    b.HasOne("Models.Parking", null)
+                    b.HasOne("Models.Parking", "Parking")
                         .WithMany("Places")
                         .HasForeignKey("ParkingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.TypeCar", null)
+                    b.HasOne("Models.TypeCar", "TypeCar")
                         .WithMany("Places")
                         .HasForeignKey("TypeCarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.TypePlace", null)
+                    b.HasOne("Models.TypePlace", "TypePlace")
                         .WithMany("Places")
                         .HasForeignKey("TypePlaceTypeId");
                 });
