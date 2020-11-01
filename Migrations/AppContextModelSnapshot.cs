@@ -48,6 +48,9 @@ namespace AutoParking_backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UrlImg")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ParkingId");
 
                     b.ToTable("parkings");
@@ -134,6 +137,26 @@ namespace AutoParking_backend.Migrations
                     b.HasKey("TypeId");
 
                     b.ToTable("typePlaces");
+                });
+
+            modelBuilder.Entity("Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("Models.Place", b =>

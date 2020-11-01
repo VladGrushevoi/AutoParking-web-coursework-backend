@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoParking_backend.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20201022141707_initPlace")]
-    partial class initPlace
+    [Migration("20201101150135_registradd")]
+    partial class registradd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,9 @@ namespace AutoParking_backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UrlImg")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ParkingId");
 
                     b.ToTable("parkings");
@@ -87,6 +90,29 @@ namespace AutoParking_backend.Migrations
                     b.ToTable("places");
                 });
 
+            modelBuilder.Entity("Models.Reserv", b =>
+                {
+                    b.Property<int>("ReservId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EndPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("StartPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ReservId");
+
+                    b.ToTable("reservations");
+                });
+
             modelBuilder.Entity("Models.TypeCar", b =>
                 {
                     b.Property<int>("TypeCarId")
@@ -115,21 +141,41 @@ namespace AutoParking_backend.Migrations
                     b.ToTable("typePlaces");
                 });
 
+            modelBuilder.Entity("Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("users");
+                });
+
             modelBuilder.Entity("Models.Place", b =>
                 {
-                    b.HasOne("Models.Parking", "Parking")
+                    b.HasOne("Models.Parking", null)
                         .WithMany("Places")
                         .HasForeignKey("ParkingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.TypeCar", "TypeCar")
+                    b.HasOne("Models.TypeCar", null)
                         .WithMany("Places")
                         .HasForeignKey("TypeCarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.TypePlace", "TypePlace")
+                    b.HasOne("Models.TypePlace", null)
                         .WithMany("Places")
                         .HasForeignKey("TypePlaceTypeId");
                 });
