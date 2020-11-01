@@ -35,6 +35,7 @@ namespace AutoParking_backend
             services.AddScoped<TypeCarService, TypeCarService>();
             services.AddScoped<PlaceService, PlaceService>();
             services.AddScoped<ReservationService, ReservationService>();
+            services.AddScoped<RegistrationService, RegistrationService>();
             services.AddControllersWithViews()
                                     .AddNewtonsoftJson(options =>
                                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
