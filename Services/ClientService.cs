@@ -52,14 +52,12 @@ namespace Services
         
         public Task<List<Client>> InitClient()
         {
-            for(int i = 0; i < 5; i++)
-            {
-                _context.clients.AddAsync(new Client{
-                    FirstName = $"Циган-{i+1}",
-                    LastName = $"Циганенко-{i+1}",
-                    Phone = "1488228322"
+            _context.clients.AddAsync(new Client{
+                    FirstName = $"Admin",
+                    LastName = $"Admin",
+                    Phone = "0965554326"
                 });
-            }
+            
             _context.SaveChangesAsync();
             return Task.Run(() => _context.clients.ToList());
         }
