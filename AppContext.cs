@@ -11,6 +11,7 @@ namespace AutoParking_backend
         public DbSet<TypePlace> typePlaces {get; set;}
         public DbSet<Place> places {get; set;}
         public DbSet<Reserv> reservations {get; set;}
+        public DbSet<User> users {get; set;}
         public AppContext(DbContextOptions opt) : base(opt)
         {
 
