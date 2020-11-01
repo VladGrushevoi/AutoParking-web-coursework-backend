@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutoParking_backend.Migrations
 {
-    public partial class initPlace : Migration
+    public partial class registradd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,11 +29,28 @@ namespace AutoParking_backend.Migrations
                     ParkingId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    UrlImg = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_parkings", x => x.ParkingId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "reservations",
+                columns: table => new
+                {
+                    ReservId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClientId = table.Column<int>(nullable: false),
+                    PlaceId = table.Column<int>(nullable: false),
+                    StartPeriod = table.Column<DateTime>(nullable: false),
+                    EndPeriod = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_reservations", x => x.ReservId);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,6 +77,21 @@ namespace AutoParking_backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_typePlaces", x => x.TypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Login = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    ClientId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,6 +152,12 @@ namespace AutoParking_backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "places");
+
+            migrationBuilder.DropTable(
+                name: "reservations");
+
+            migrationBuilder.DropTable(
+                name: "users");
 
             migrationBuilder.DropTable(
                 name: "parkings");
