@@ -66,7 +66,7 @@ namespace Services
         {
             string[] photos = {
                 "https://dengodel.com/wp-content/uploads/posts/2014-08/1408045348_biznes-plan-avtostoyanki-1.jpg",
-                "https://lh3.googleusercontent.com/proxy/xsyFIdXX-tQPpTzojcLxouCXuEgXIc4CPFpSvLBnl-dHGSLtbtjiG1XGjkw50B5f5Gq5IBZn0aZpWGQDrEiwtaOfo1yIZEBqzduHiGRjaBpPvDKhgWcTVQKl3lA",
+                "https://st.depositphotos.com/1000746/2503/i/450/depositphotos_25035765-stock-photo-underground-parking.jpg",
                 "https://pozhar.info/wp-content/uploads/2017/12/%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B0%D1%8F-%D0%B0%D0%B2%D1%82%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%BA%D0%B0.png"
             };
 

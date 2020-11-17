@@ -22,6 +22,12 @@ namespace Controllers
             return Created("Created place", placeService.InitPlace());
         }
 
+        [HttpGet("free/parking/{id}")]
+        public ActionResult<List<Place>> GetFreePlaceFromPark(int id)
+        {
+            return Ok(placeService.GetFreePlace(id));
+        }
+
         [HttpGet("parking/{id}")]
         public ActionResult<Place> GetPlaceByIdParking(int id)
         {

@@ -52,6 +52,18 @@ namespace Services
             return false;
         }
 
+        internal User UpdateUser(int id,User user)
+        {
+            var upUser = _context.users.FirstOrDefault(u => u.UserId == id);
+            if(upUser != null)
+            {
+                upUser.Login = user.Login;
+                upUser.Password = user.Password;
+            }
+            _context.SaveChangesAsync();
+            return _context.users.Where(u => u.UserId == id).First();
+        }
+
         private int AddNewClient(Client client)
         {
             _context.clients.AddAsync(client);

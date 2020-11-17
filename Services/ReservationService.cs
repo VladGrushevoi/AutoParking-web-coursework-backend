@@ -31,6 +31,11 @@ namespace Services
             return freePlace.ToList();
         }
 
+        internal List<Reserv> GetReservByClient(int id)
+        {
+            return _context.reservations.Where(r => r.ClientId == id).ToList();
+        }
+
         public Task<Reserv> ReservPlace(ReservModel rm)
         {
             _context.reservations.AddAsync(new Reserv{

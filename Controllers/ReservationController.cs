@@ -21,6 +21,11 @@ namespace Controller
         {
             return Ok(reservationService.GetallReserv());
         }
+        [HttpGet("get-reserv/client/{id}")]
+        public ActionResult<List<Reserv>> GetReservByClient(int id)
+        {
+            return Ok(reservationService.GetReservByClient(id));
+        }
 
         [HttpGet("search/freeplace")]
         public ActionResult<List<Place>> GetAllFreePlace()

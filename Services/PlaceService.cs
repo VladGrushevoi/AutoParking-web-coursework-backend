@@ -28,7 +28,31 @@ namespace Services
         {
             return Task.Run(() =>  _context.places.Where(p => p.ParkingId == IdParking).ToList());
         }
-        
+
+        public List<Place> GetFreePlace(int idPark)
+        {
+            List<int> actualReserv = GetActualReserv().ToList();
+            List<Place> allPlace = _context.places.Where(p => p.ParkingId == idPark).ToList();
+            List<Place> freePlaces = new List<Place>();
+
+            foreach (var place in allPlace)
+            {
+                if(!(actualReserv.Contains(place.PlaceId)))
+                {
+                    freePlaces.Add(place);
+                }
+            }
+
+            return freePlaces;
+        }
+
+        private IQueryable<int> GetActualReserv()
+        {
+            return from reserv in _context.reservations
+                    where reserv.EndPeriod.Date > System.DateTime.Now.Date
+                    select reserv.PlaceId;
+        }
+
         ///================================================////
         ///       Це тупо для ініціалізіції інфи          ////
         public List<Place> InitPlace()

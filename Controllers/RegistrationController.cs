@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services;
@@ -27,15 +28,22 @@ namespace Controllers
             return NotFound();
         }
 
-        [HttpGet("auth")]
+        [HttpPost("auth")]
         public ActionResult<User> AuthUser([FromBody] Authorization auth)
         {
+            Console.WriteLine(auth.Login+" ffff"+auth.Password);
             var user = regeistrationService.AuthUser(auth);
             if(user != null)
             {
                 return Ok(user);
             }
             return NoContent();
+        }
+
+        [HttpPatch("update-user/{id}")]
+        public ActionResult<User> UpdateUser(int id,[FromBody] User user)
+        {
+            return Ok(regeistrationService.UpdateUser(id, user));
         }
 
         [HttpGet("init")]
